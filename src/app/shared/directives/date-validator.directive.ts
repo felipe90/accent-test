@@ -32,6 +32,7 @@ export class DateValidatorDirective implements Validator {
 
   validate(c: AbstractControl): { [key: string]: any } {
 
+    console.log(c);
     if (c.root !== undefined && c.value !== null) {
 
       const ownValue = c.value;
@@ -41,7 +42,6 @@ export class DateValidatorDirective implements Validator {
 
       const diff = nowDate.diff(ownDate, 'years', true);
 
-      console.log(ownDate);
 
       // check values
       if (diff < ADULT_AGE) {

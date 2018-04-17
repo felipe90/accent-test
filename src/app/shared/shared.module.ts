@@ -1,5 +1,6 @@
 import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
+import { DateValidatorDirective } from './directives/date-validator.directive';
 import { HttpService } from './services/http.service';
 import { NgModule } from '@angular/core';
 import { RequestService } from './services/request.service';
@@ -77,10 +78,14 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    DateValidatorDirective
   ],
   providers: [
     HttpService,
     RequestService
+  ],
+  declarations: [
+    DateValidatorDirective
   ]
 })
 export class SharedModule { }
