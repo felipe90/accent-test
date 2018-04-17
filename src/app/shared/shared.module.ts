@@ -1,4 +1,3 @@
-import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
 import { DateValidatorDirective } from './directives/date-validator.directive';
 import { HttpService } from './services/http.service';
@@ -44,7 +43,6 @@ import {
     CommonModule
   ],
   exports: [
-    CdkTableModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
