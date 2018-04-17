@@ -14,10 +14,10 @@ export class CreditApplication {
     public getDefaultValues(): any {
         return {
             id: ['', [Validators.required, Validators.pattern(regexNumeric)]],
-            companyName: [''],
-            companyNIT: ['', [Validators.required, Validators.pattern(regexNumeric)]],
-            clientSalary: ['', [Validators.required, Validators.pattern(regexNumeric)]],
-            clientContractDate: ['', Validators.required],
+            companyName: [{value: '', disabled: true}],
+            companyNIT: [{value: '', disabled: true}, [Validators.required, Validators.pattern(regexNumeric)]],
+            clientSalary: [{value: '', disabled: true}, [Validators.required, Validators.pattern(regexNumeric)]],
+            clientContractDate: [{value: '', disabled: true}, Validators.required],
         };
     }
 }

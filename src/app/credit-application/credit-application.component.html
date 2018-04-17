@@ -10,8 +10,13 @@
     </mat-card-header>
     <mat-card-content>
       <mat-form-field class="full-width">
-        <input matInput placeholder="* Client Identifaction Number" formControlName=id [errorStateMatcher]="matcher">
-        <mat-error *ngIf="form.controls['id'].hasError('required') && !form.controls['id'].hasError('pattern')">
+        <mat-select placeholder="* Client Identifaction Number" formControlName=id [(ngModel)]="clientId">
+          <mat-option *ngFor="let user of filteredUsers" [value]="user.id">
+            <span>Client ID: {{ user.id }}</span> |
+            <small>Name: {{user.name}}</small>
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls['id'].hasError('required') && !form.controls ['id'].hasError('pattern')">
           <strong>Client Identifaction is required</strong>
         </mat-error>
         <mat-error *ngIf="form.controls['id'].hasError('pattern')">
@@ -22,9 +27,6 @@
         <input matInput placeholder="* Company Name" formControlName=companyName [errorStateMatcher]="matcher">
         <mat-error *ngIf="form.controls['companyName'].hasError('required')">
           <strong>Company Name is required</strong>
-        </mat-error>
-        <mat-error *ngIf="form.controls['companyName'].hasError('pattern')">
-          <strong>Company Name should contain only numbers</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
@@ -37,17 +39,20 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
-          <input matInput placeholder="* Client Salary" formControlName=clientSalary [errorStateMatcher]="matcher">
-          <mat-error *ngIf="form.controls['clientSalary'].hasError('required')">
-            <strong>Client Salary is required</strong>
-          </mat-error>
-          <mat-error *ngIf="form.controls['clientSalary'].hasError('pattern')">
-            <strong>Client Salary should contain only numbers</strong>
-          </mat-error>
-        </mat-form-field>
+        <input matInput placeholder="* Client Salary" formControlName=clientSalary [errorStateMatcher]="matcher">
+        <mat-error *ngIf="form.controls['clientSalary'].hasError('required')">
+          <strong>Client Salary is required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls['clientSalary'].hasError('pattern')">
+          <strong>Client Salary should contain only numbers</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls['clientSalary'].hasError('salaryValidator')">
+          <strong>Salary not valid to get credit</strong>
+        </mat-error>
+      </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput [matDatepicker]="picker" placeholder="* Client contract date (please use datepicker to enter born date)" formControlName=clientContractDate
-          [errorStateMatcher]="matcher">
+        <input matInput [matDatepicker]="picker" placeholder="* Client contract date (please use datepicker to enter born date)"
+          formControlName=clientContractDate [errorStateMatcher]="matcher">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker disabled="false"></mat-datepicker>
         <mat-error *ngIf="form.controls['clientContractDate'].hasError('required')">
