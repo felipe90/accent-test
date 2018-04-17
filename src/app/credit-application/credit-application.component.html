@@ -76,3 +76,9 @@
     </mat-card-actions>
   </form>
 </mat-card>
+<mat-card style="color: white; background-color: springgreen" *ngIf="isClientCreated">
+  <h3>Client created succesfully!</h3>
+</mat-card>
+<mat-card style="color: white; background-color: tomato" *ngIf="isErrorOnCreated">
+  <h3>Error creating client register</h3>
+</mat-card>

@@ -15,6 +15,7 @@ body {
     height: 960px;
 }
 
+mat-card, 
 .basic-container {
     padding: 5px;
 }

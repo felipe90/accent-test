@@ -3,6 +3,7 @@ import { Client } from '../shared/models/client.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MyErrorStateMatcher } from '../shared/services/my-error-state-matcher';
+import { RequestService } from '../shared/services/request.service';
 
 const ADULT_AGE = 18;
 
@@ -16,9 +17,12 @@ export class ClientRegisterComponent implements OnInit {
   public client = new Client();
   public form: FormGroup;
   public matcher: MyErrorStateMatcher;
+  public isClientCreated = false;
+  public isErrorOnCreated = false;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private requestService: RequestService
   ) {
 
   }
@@ -39,10 +43,7 @@ export class ClientRegisterComponent implements OnInit {
 
       const diff = nowDate.diff(ownDate, 'years', true);
 
-      if (moment(ownDate, 'DD/MM/YYYY', true).isValid()) {
-        date$.setErrors({ invalidDate: true });
-        return;
-      } else if (diff < ADULT_AGE) {
+     if (diff < ADULT_AGE) {
         date$.setErrors({ dateValidator: true });
         return;
       } else {
@@ -59,7 +60,17 @@ export class ClientRegisterComponent implements OnInit {
       return;
     }
 
-    console.log(this.client);
+    this.requestService.createClient(this.client)
+      .subscribe((res) => {
+        this.isClientCreated = false;
+        this.isErrorOnCreated = false;
+
+        if (res) {
+          this.isClientCreated = true;
+        }
+      },  error => {
+        this.isErrorOnCreated = true;
+      });
 
   }
 

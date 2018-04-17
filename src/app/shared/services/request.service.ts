@@ -28,7 +28,7 @@ export class RequestService {
   public getClientsById(id: string): Observable<any> {
     const params = new HttpParams().set('id', id);
     return this.http.get(`${this.ROOT_URL}${this.END_POINTS.USERS}`, params)
-      .map((response: any) => response.data)
+      .map((response: any) => response)
       .catch((error) => {
         return Observable.throw(error);
       });
@@ -36,7 +36,7 @@ export class RequestService {
 
   public createClient(clientData: any): Observable<any> {
     return this.http.post(`${this.ROOT_URL}${this.END_POINTS.USERS}`, clientData)
-      .map((response: any) => response.data)
+      .map((response: any) => response)
       .catch((error) => {
         return Observable.throw(error);
       });

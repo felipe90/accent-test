@@ -20,6 +20,8 @@ export class CreditApplicationComponent implements OnInit {
   public isDisabled = true;
   public filteredUsers = [];
   public clientId: string;
+  public isClientCreated = false;
+  public isErrorOnCreated = false;
 
   constructor(
     private fb: FormBuilder,
@@ -80,5 +82,27 @@ export class CreditApplicationComponent implements OnInit {
           salary$.setErrors(salary$.value === null ? { required: true } : null);
         }
       });
+  }
+
+  public onSubmit() {
+    this.form['submitted'] = true;
+    this.creditData = this.form.getRawValue();
+
+    if (this.form.status === 'INVALID') {
+      return;
+    }
+
+    this.requestService.createClient(this.creditData)
+      .subscribe((res) => {
+        this.isClientCreated = false;
+        this.isErrorOnCreated = false;
+
+        if (res) {
+          this.isClientCreated = true;
+        }
+      },  error => {
+        this.isErrorOnCreated = true;
+      });
+
   }
 }
