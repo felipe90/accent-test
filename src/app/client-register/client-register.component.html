@@ -1,22 +1,21 @@
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      <h1>Client Register</h1>
-    </mat-card-title>
-    <mat-card-subtitle>
-      <h3>* mandatory fields</h3>
-    </mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
-      very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-    </p>
-    <form action="" novalidate [formGroup]="form" autocomplete="off" (ngSubmit)="onSubmit()">
+  <form action="" novalidate [formGroup]="form" autocomplete="off" (ngSubmit)="onSubmit()">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Client Register</h1>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <h3>* mandatory fields</h3>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
       <mat-form-field class="full-width">
         <input matInput placeholder="* Client Identifaction Number" formControlName=id [errorStateMatcher]="matcher">
-        <mat-error *ngIf="form.controls['id'].hasError('required')">
+        <mat-error *ngIf="form.controls['id'].hasError('required') && !form.controls['id'].hasError('pattern')">
           <strong>Client Identifaction is required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls['id'].hasError('pattern')">
+          <strong>Client Identifaction should contain only numbers</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
@@ -32,19 +31,22 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="* Client Born Date" formControlName=birthDate [errorStateMatcher]="matcher">
+        <input app-dateValidator matInput placeholder="* Client Born Date" formControlName=birthDate [errorStateMatcher]="matcher">
         <mat-error *ngIf="form.controls['birthDate'].hasError('required')">
           <strong>Client Born Date is required</strong>
         </mat-error>
+        <mat-error *ngIf="form.controls['birthDate'].hasError('dateValidator')">
+          <strong>Client should be adult</strong>
+        </mat-error>
       </mat-form-field>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary">
-      <strong>SUBMIT</strong>
-    </button>
-    <button mat-raised-button color="accent">
-      <strong>RESET</strong>
-    </button>
-  </mat-card-actions>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">
+        <strong>SUBMIT</strong>
+      </button>
+      <button mat-raised-button color="accent" type="button" (click)="form.reset()">
+        <strong>RESET</strong>
+      </button>
+    </mat-card-actions>
+  </form>
 </mat-card>
