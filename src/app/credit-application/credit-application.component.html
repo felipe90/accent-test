@@ -46,8 +46,11 @@
         <mat-error *ngIf="form.controls['clientSalary'].hasError('pattern')">
           <strong>Client Salary should contain only numbers</strong>
         </mat-error>
-        <mat-error *ngIf="form.controls['clientSalary'].hasError('salaryValidator')">
-          <strong>Salary not valid to get credit</strong>
+        <mat-error 
+          *ngIf="form.controls['clientSalary'].hasError('salaryValidator') || 
+          form.controls['clientSalary'].hasError('max') || 
+          form.controls['clientSalary'].hasError('min')">
+          <strong>Salary mount not valid to get credit</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
@@ -59,10 +62,7 @@
           <strong> Client contract Date is required</strong>
         </mat-error>
         <mat-error *ngIf="form.controls['clientContractDate'].hasError('dateValidator')">
-          <strong>Client should be adult</strong>
-        </mat-error>
-        <mat-error *ngIf="form.controls['clientContractDate'].hasError('invalidDate')">
-          <strong>Invalid date format</strong>
+          <strong>Client contract date shouldn't be today or future date</strong>
         </mat-error>
       </mat-form-field>
     </mat-card-content>
@@ -76,9 +76,10 @@
     </mat-card-actions>
   </form>
 </mat-card>
-<mat-card style="color: white; background-color: springgreen" *ngIf="isClientCreated">
-  <h3>Client created succesfully!</h3>
+<mat-card style="color: white; background-color: springgreen" *ngIf="isValidCredit">
+  <h3>Credit request succesfully!</h3>
+  <strong>Credir amount aproved: $ {{creditAmount}}</strong>
 </mat-card>
-<mat-card style="color: white; background-color: tomato" *ngIf="isErrorOnCreated">
-  <h3>Error creating client register</h3>
+<mat-card style="color: white; background-color: tomato" *ngIf="isErrorOnCredit">
+  <h3>Your credit request was rejected</h3>
 </mat-card>

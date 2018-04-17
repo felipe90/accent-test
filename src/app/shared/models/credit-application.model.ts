@@ -16,7 +16,12 @@ export class CreditApplication {
             id: ['', [Validators.required, Validators.pattern(regexNumeric)]],
             companyName: [{value: '', disabled: true}],
             companyNIT: [{value: '', disabled: true}, [Validators.required, Validators.pattern(regexNumeric)]],
-            clientSalary: [{value: '', disabled: true}, [Validators.required, Validators.pattern(regexNumeric)]],
+            clientSalary: [{value: '', disabled: true}, [
+                Validators.required,
+                Validators.pattern(regexNumeric),
+                Validators.max(100000000),
+                Validators.min(1)
+            ]],
             clientContractDate: [{value: '', disabled: true}, Validators.required],
         };
     }
