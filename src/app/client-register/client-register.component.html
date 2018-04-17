@@ -12,12 +12,39 @@
       The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
       very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
     </p>
-    <form action="">
-
+    <form action="" novalidate [formGroup]="form" autocomplete="off" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="* Client Identifaction Number" formControlName=id [errorStateMatcher]="matcher">
+        <mat-error *ngIf="form.controls['id'].hasError('required')">
+          <strong>Client Identifaction is required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="* Client Name" formControlName=name [errorStateMatcher]="matcher">
+        <mat-error *ngIf="form.controls['name'].hasError('required')">
+          <strong>Client Name is required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="* Client Last Name" formControlName=lastName [errorStateMatcher]="matcher">
+        <mat-error *ngIf="form.controls['lastName'].hasError('required')">
+          <strong>Client Last Name is required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="* Client Born Date" formControlName=birthDate [errorStateMatcher]="matcher">
+        <mat-error *ngIf="form.controls['birthDate'].hasError('required')">
+          <strong>Client Born Date is required</strong>
+        </mat-error>
+      </mat-form-field>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary"><strong>SUBMIT</strong></button>
-    <button mat-raised-button color="accent"><strong>RESET</strong></button>
+    <button mat-raised-button color="primary">
+      <strong>SUBMIT</strong>
+    </button>
+    <button mat-raised-button color="accent">
+      <strong>RESET</strong>
+    </button>
   </mat-card-actions>
 </mat-card>

@@ -14,10 +14,12 @@ export class ClientRegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
-    this.form = this.fb.group(this.client);
+    this.form = this.fb.group(this.client.getDefaultValues());
   }
 
 }

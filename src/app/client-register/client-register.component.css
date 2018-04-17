@@ -1,3 +1,7 @@
 mat-card-actions {
     text-align: right;    
 }
+
+mat-card {
+    margin: 15px;
+}

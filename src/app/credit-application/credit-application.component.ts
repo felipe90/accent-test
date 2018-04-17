@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CreditApplicationComponent implements OnInit {
 
-  public client = new CreditApplication();
+  public creditData = new CreditApplication();
   public form: FormGroup;
 
   constructor(
@@ -17,6 +17,6 @@ export class CreditApplicationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.form = this.fb.group(this.client);
+    this.form = this.fb.group(this.creditData.getDefaultValues);
   }
 }
