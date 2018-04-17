@@ -1,3 +1,73 @@
-<p>
-  credit-application works!
-</p>
+<mat-card>
+  <form action="" novalidate [formGroup]="form" autocomplete="off" (ngSubmit)="onSubmit()">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Credit Application</h1>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <h3>* mandatory fields</h3>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="* Client Identifaction Number" formControlName=id [errorStateMatcher]="matcher">
+        <mat-error *ngIf="form.controls['id'].hasError('required') && !form.controls['id'].hasError('pattern')">
+          <strong>Client Identifaction is required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls['id'].hasError('pattern')">
+          <strong>Client Identifaction should contain only numbers</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="* Company Name" formControlName=companyName [errorStateMatcher]="matcher">
+        <mat-error *ngIf="form.controls['companyName'].hasError('required')">
+          <strong>Company Name is required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls['companyName'].hasError('pattern')">
+          <strong>Company Name should contain only numbers</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="* Company NIT" formControlName=companyNIT [errorStateMatcher]="matcher">
+        <mat-error *ngIf="form.controls['companyNIT'].hasError('required')">
+          <strong>Company NIT is required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls['companyNIT'].hasError('pattern')">
+          <strong>Company NIT should contain only numbers</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+          <input matInput placeholder="* Client Salary" formControlName=clientSalary [errorStateMatcher]="matcher">
+          <mat-error *ngIf="form.controls['clientSalary'].hasError('required')">
+            <strong>Client Salary is required</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls['clientSalary'].hasError('pattern')">
+            <strong>Client Salary should contain only numbers</strong>
+          </mat-error>
+        </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput [matDatepicker]="picker" placeholder="* Client contract date (please use datepicker to enter born date)" formControlName=clientContractDate
+          [errorStateMatcher]="matcher">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+        <mat-error *ngIf="form.controls['clientContractDate'].hasError('required')">
+          <strong> Client contract Date is required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls['clientContractDate'].hasError('dateValidator')">
+          <strong>Client should be adult</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls['clientContractDate'].hasError('invalidDate')">
+          <strong>Invalid date format</strong>
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">
+        <strong>SUBMIT</strong>
+      </button>
+      <button mat-raised-button color="accent" type="button" (click)="form.reset()">
+        <strong>RESET</strong>
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

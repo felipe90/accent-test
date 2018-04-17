@@ -73,7 +73,7 @@ import {
     MatSlideToggleModule,
     MatSnackBarModule,
     MatSortModule,
-    MatTableModule,
+    // MatTableModule,
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,

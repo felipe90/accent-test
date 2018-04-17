@@ -4,9 +4,8 @@ import { Validators } from '@angular/forms';
 const regexAlphanumeric = '^[a-zA-Z0-9]*$';
 const regexNumeric = '[0-9]*';
 
-
 export class CreditApplication {
-    public clientid: number;
+    public id: number;
     public companyName: string;
     public companyNIT: number;
     public clientSalary: number;
@@ -14,11 +13,11 @@ export class CreditApplication {
 
     public getDefaultValues(): any {
         return {
-            clientid : ['', Validators.required],
-            companyName : ['', Validators.required],
-            companyNIT : ['', [Validators.required, Validators.pattern(regexNumeric)]],
-            birthclientSalaryDate : ['', Validators.required],
-            clientContractDate : ['', Validators.required],
+            id: ['', [Validators.required, Validators.pattern(regexNumeric)]],
+            companyName: [''],
+            companyNIT: ['', [Validators.required, Validators.pattern(regexNumeric)]],
+            clientSalary: ['', [Validators.required, Validators.pattern(regexNumeric)]],
+            clientContractDate: ['', Validators.required],
         };
     }
 }
