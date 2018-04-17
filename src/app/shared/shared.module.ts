@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DateValidatorDirective } from './directives/date-validator.directive';
 import { HttpService } from './services/http.service';
 import { NgModule } from '@angular/core';
-import { RequestService } from './services/request.service';
 
 import {
   MatAutocompleteModule,
@@ -82,7 +81,6 @@ import {
   ],
   providers: [
     HttpService,
-    RequestService
   ],
   declarations: [
     DateValidatorDirective
