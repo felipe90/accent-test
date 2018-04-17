@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CreditApplication } from '../shared/models/credit-application.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-credit-application',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreditApplicationComponent implements OnInit {
 
-  constructor() { }
+  public client = new CreditApplication();
+  public form: FormGroup;
+
+  constructor(
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.form = this.fb.group(this.client);
   }
-
 }
