@@ -66,8 +66,6 @@ export class CreditApplicationComponent implements OnInit {
     const date$ = this.form.get('clientContractDate');
 
     date$.valueChanges.subscribe(res => {
-      debugger;
-
       if (!date$.errors) {
         const ownDate = moment(new Date(res));
         const nowDate = moment(new Date());
